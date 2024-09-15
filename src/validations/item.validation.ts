@@ -1,4 +1,3 @@
-import { Item } from '@prisma/client';
 import Joi from 'joi';
 
 const createItem = {
@@ -9,15 +8,9 @@ const createItem = {
   })
 };
 
-const getItem = {
-  params: Joi.object().keys({
-    itemId: Joi.string()
-  })
-};
-
 const updateItem = {
   params: Joi.object().keys({
-    itemId: Joi.number().integer()
+    itemId: Joi.string().required()
   }),
   body: Joi.object()
     .keys({
@@ -29,13 +22,12 @@ const updateItem = {
 
 const deleteItem = {
   params: Joi.object().keys({
-    itemId: Joi.number().integer()
+    itemId: Joi.string().required()
   })
 };
 
 export default {
   createItem,
-  getItem,
   updateItem,
   deleteItem
 };

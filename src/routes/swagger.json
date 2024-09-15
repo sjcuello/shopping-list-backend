@@ -66,44 +66,16 @@
                 }
             }
         },
-        "/item/{itemId}": {
+        "/item/{id}": {
             "parameters": [
                 {
-                    "name": "id",
                     "in": "path",
+                    "name": "id",
                     "required": true,
                     "description": "ID of the item that we want to match",
                     "type": "string"
                 }
             ],
-            "get": {
-                "tags": [
-                    "Items"
-                ],
-                "summary": "Get item with given ID",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "required": true,
-                        "description": "Item with id",
-                        "schema": {
-                            "$ref": "#/definitions/id"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Item"
-                        }
-                    },
-                    "404": {
-                        "description": "Failed. Item not found."
-                    }
-                }
-            },
             "patch": {
                 "summary": "Update item with given ID",
                 "tags": [

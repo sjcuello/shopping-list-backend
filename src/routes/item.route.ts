@@ -12,7 +12,6 @@ router
 
 router
   .route('/:itemId')
-  .get(validate(itemValidation.getItem), itemController.getItem)
   .delete(validate(itemValidation.deleteItem), itemController.deleteItem)
   .patch(validate(itemValidation.updateItem), itemController.updateItem);
 
