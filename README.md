@@ -1,17 +1,44 @@
-### Node Express template project
+# Shopping List Backend
 
-This project is based on a GitLab [Project Template](https://docs.gitlab.com/ee/gitlab-basics/create-project.html).
+This is the backend for the shopping list app. 
 
-Improvements can be proposed in the [original project](https://gitlab.com/gitlab-org/project-templates/express).
+## How to run the app
+__Note:__ You need to have NodeJS (v20) installed in your machine to run this app. Also a Postgres (v15) database is required.
 
-### CI/CD with Auto DevOps
+1. Clone the repository
+```bash
+git clone https://github.com/sjcuello/shopping-list-backend.git
+```
+2. Copy the `.env.example` file and rename it to `.env`:
+    ```bash
+    cp .env.example .env
+    ```
+3. Install the dependencies
+```bash
+npm install
+```
+4. Generate the database
+```bash
+npx prisma generate
+```
+5. Run the migrations
+```bash
+npx prisma migrate dev
+```
+6. Start the server
+```bash
+npm run dev
+```
+### Accessing the server
+The server will be running on `http://localhost:3000`
+The documentation will be available on `http://localhost:3000/docs`
 
-This template is compatible with [Auto DevOps](https://docs.gitlab.com/ee/topics/autodevops/).
 
-If Auto DevOps is not already enabled for this project, you can [turn it on](https://docs.gitlab.com/ee/topics/autodevops/#enabling-auto-devops) in the project settings.
-
-### Developing with Gitpod
-
-This template has a fully-automated dev setup for [Gitpod](https://docs.gitlab.com/ee/integration/gitpod.html).
-
-If you open this project in Gitpod, you'll get all Node dependencies pre-installed and Express will open a web preview.
+## Technologies Used
+- NodeJS
+- Express
+- Prisma
+- Postgres
+- TypeScript
+- Swagger
+- Joi
