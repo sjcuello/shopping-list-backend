@@ -87,6 +87,15 @@ const updateItemById = async <Key extends keyof Item>(
     if (!item) {
       throw new ApiError(httpStatus.NOT_FOUND, 'Item not found');
     }
+
+    if (updateBody.isChecked !== item.isChecked) {
+      return await changeIsChecked(itemId, item.isChecked) as Pick<Item, Key> | null;
+    }
+
+    if (updateBody.markAsDeleted !== item.markAsDeleted) {
+      return await changeIsDeleted(itemId, item.markAsDeleted) as Pick<Item, Key> | null;
+    }
+
     if (updateBody.name && (await getItemByName(updateBody.name as string))) {
       throw new ApiError(httpStatus.BAD_REQUEST, 'Name already taken');
     }
@@ -114,6 +123,20 @@ const deleteItemById = async (itemId: number): Promise<Item> => {
     throw error instanceof ApiError ? error : new ApiError(httpStatus.INTERNAL_SERVER_ERROR, 'Error deleting item by ID');
   }
 };
+
+const changeIsDeleted = async (itemId: number, currentMarkAsDeleted: boolean): Promise<Item> => {
+  return await prisma.item.update({
+    where: { id: itemId },
+    data: { markAsDeleted: !currentMarkAsDeleted },
+  });
+}
+
+const changeIsChecked = async (itemId: number, currentIsChecked: boolean): Promise<Item> => {
+  return await prisma.item.update({
+    where: { id: itemId },
+    data: { isChecked: !currentIsChecked },
+  });
+}
 
 export default {
   createItem,

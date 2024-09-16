@@ -16,7 +16,12 @@ const updateItem = {
     .keys({
       name: Joi.string().required(),
       amount: Joi.number().required(),
-      description: Joi.string()
+      description: Joi.string(),
+      isChecked: Joi.boolean(),
+      markAsDeleted: Joi.boolean(),
+      id: Joi.number(),
+      createdAt: Joi.date(),
+      updatedAt: Joi.date()
     })
 };
 
