@@ -20,6 +20,9 @@ const createItem = async (
   description?: string,
 ): Promise<Item> => {
   try {
+    if (await getItemByName(name)) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Name already taken');
+    }
     return await prisma.item.create({
       data: { name, description, amount }
     });
