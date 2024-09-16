@@ -20,9 +20,6 @@ const createItem = async (
   description?: string,
 ): Promise<Item> => {
   try {
-    if (await getItemByName(name)) {
-      throw new ApiError(httpStatus.BAD_REQUEST, 'Name already taken');
-    }
     return await prisma.item.create({
       data: { name, description, amount }
     });
@@ -96,9 +93,6 @@ const updateItemById = async <Key extends keyof Item>(
       return await changeIsDeleted(itemId, item.markAsDeleted) as Pick<Item, Key> | null;
     }
 
-    if (updateBody.name && (await getItemByName(updateBody.name as string))) {
-      throw new ApiError(httpStatus.BAD_REQUEST, 'Name already taken');
-    }
     return await prisma.item.update({
       where: { id: item.id },
       data: updateBody,
