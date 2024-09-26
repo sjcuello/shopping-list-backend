@@ -4,8 +4,8 @@ import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 
 const createItem = async (req: Request, res: Response) => {
-  const { name, amount, description } = req.body;
-  const item = await itemService.createItem(name, amount, description);
+  const { name, amount, description, date } = req.body;
+  const item = await itemService.createItem(name, amount, description, date);
   res.status(httpStatus.CREATED).send(item);
 };
 

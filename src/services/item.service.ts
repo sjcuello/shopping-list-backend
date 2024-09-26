@@ -18,13 +18,14 @@ const createItem = async (
   name: string,
   amount: number,
   description?: string,
+  date?: Date
 ): Promise<Item> => {
   try {
     if (await getItemByName(name)) {
       throw new ApiError(httpStatus.BAD_REQUEST, 'Name already taken');
     }
     return await prisma.item.create({
-      data: { name, description, amount }
+      data: { name, description, amount, dateItem: date }
     });
   } catch (error) {
     console.error('Error creating item:', error);

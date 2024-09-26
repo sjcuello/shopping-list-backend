@@ -15,6 +15,7 @@ model Item {
   amount        Int 
   isChecked     Boolean       @default(false)
   markAsDeleted Boolean       @default(false)
+  dateItem      DateTime      @default(now())
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @default(now()) @updatedAt
 }

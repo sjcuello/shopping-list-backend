@@ -4,7 +4,8 @@ const createItem = {
   body: Joi.object().keys({
     name: Joi.string().required(),
     amount: Joi.number().required(),
-    description: Joi.string()
+    description: Joi.string(),
+    date: Joi.date()
   })
 };
 
